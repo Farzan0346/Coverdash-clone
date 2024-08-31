@@ -10,7 +10,10 @@
     box-shadow: border-box;
     margin: 0;
     padding: 0;
+}
+body{
     overflow-x: hidden;
+
 }
 
 *::selection{
@@ -76,7 +79,11 @@ body {
     font-size: 16px;
     cursor: pointer;
     color: rgb(107 114 128);
+    padding-bottom: 10px;
 
+}
+.nav-items ul ul li{
+    padding: 0;
 }
 
 li.active {
@@ -209,8 +216,18 @@ button:hover {
 
 .hero-right {
     width: 45%;
+    overflow-x: hidden;
 
 
+}
+.hero-right #slider-wrapper{
+    display: flex;
+    align-items: center;
+    transition: all 0.5s;
+}
+.hero-right #slider-wrapper .slider-item img{
+    width: 100%;
+    height: 100%;
 }
 
 .hero-right video {
@@ -241,10 +258,11 @@ button:hover {
     margin-bottom: 10px;
 }
 
-.dropdown-wrapper {
+ .dropdown-wrapper {
     position: relative;
 
 }
+
 
 /*styling for dropdown*/
 .dropdown-menu {
@@ -267,7 +285,7 @@ button:hover {
 
 .dropdown-menu ul li {
     list-style: none;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     cursor: pointer;
 }
 
@@ -555,32 +573,57 @@ button:hover {
 
 
 .business-slider {
-    display: flex;
-    gap: 50px;
-    /* width:100% */
-    flex-wrap: wrap;
-    /* justify-content: center; */
-}
-
-.slider-wrapper {
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 16px;
+    
 }
 
-.slider-box {
+#item-slider-wrapper {
     display: flex;
     align-items: center;
-    gap: 10px;
+    transition: all 0.5s;
+}
+.item-slider-item{
+    /* min-width: 100%; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 12px;
 }
 
-.slider-box i {
+
+.item-slider-item i {
     color: #09CF82;
+}
+.slider-box{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 30%;
 }
 
 .slider-box p {
     color: rgb(107 114 128);
     font-size: 14px;
+    white-space: nowrap;
+}
+.slider-controls{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.slider-controls .dot{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid #09CF82;
+    cursor: pointer;
+}
+.slider-controls .dot.active{
+    background-color: #09CF82;
 }
 
 
@@ -805,6 +848,9 @@ color: #202847;
     text-align: center;
     margin-top: 20px;
 }
+.embedded-container .embedded-heading h1 span{
+    color: #09CF82;
+}
 
 .embedded-container .embedded-heading p{
     color: rgb(107 114 128);
@@ -897,6 +943,9 @@ color: #202847;
 
     .business-slider {
         gap: 19px;
+    }
+    .slider-box{
+        width: 50%;
     }
 }
 

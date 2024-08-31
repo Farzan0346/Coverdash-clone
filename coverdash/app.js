@@ -1,6 +1,4 @@
-gsap.to('.hero-left',{
 
-})
 let btn = document.getElementById('barBtn');
 let nav = document.getElementById('sideBar');
 let icon = document.getElementById('icon');
@@ -23,3 +21,76 @@ body.addEventListener('click', (e) => {
     }
   }
 });
+// Image Slider
+let sliderWrapper = document.getElementById('slider-wrapper');
+let sliderItems = document.querySelectorAll('#slider-wrapper .slider-item');
+let totalSliderItems = sliderItems.length;
+sliderItems.forEach((slideritem)=>{
+  slideritem.style.width = 100 / totalSliderItems + '%';
+});
+sliderWrapper.style.width = totalSliderItems * 100 +'%';
+let slide = 0;
+let transformValue = 100 / totalSliderItems;
+setInterval(()=>{
+  slide -= transformValue;
+    if (Math.abs(slide) >= 100) {
+      slide = 0;  // Reset to the first slide
+    }
+  sliderWrapper.style.transform = `translateX(${slide}%)`;
+},3000);
+
+// let itemSliderWrappers = document.querySelectorAll('#item-slider-wrapper');
+// itemSliderWrappers.forEach((wrapper) => {
+//   let sliderContainer = wrapper.parentElement;
+  
+//   let dots = sliderContainer.querySelectorAll('.slider-controls .dot');
+//   let itemSliderItems = wrapper.querySelectorAll('.item-slider-item');
+//   // let itemSliderItem = itemSliderWrapper.querySelectorAll('.item-slider-item');
+//   let itemTotalSliderItems = itemSliderItems.length;
+//   wrapper.style.width = itemTotalSliderItems * 100 +'%';
+// });
+
+// function handleDotClick(event) {
+//   console.log(Array.from(dots).indexOf(event.target));
+  
+//     dots.forEach(dot => dot.classList.remove('active'));
+//     event.target.classList.add('active');
+//     let dotIndex = Array.from(dots).indexOf(event.target);
+//     let transformValue = -dotIndex * (100 / itemTotalSliderItems);
+//     itemSliderWrapper.style.transform = `translateX(${transformValue}%)`;
+// }
+
+// dots.forEach(dot => {
+//     dot.addEventListener('click', handleDotClick);
+// });
+
+
+let itemSliderWrappers = document.querySelectorAll('#item-slider-wrapper');
+
+itemSliderWrappers.forEach((wrapper) => {
+  let sliderContainer = wrapper.parentElement;
+  let dots = sliderContainer.querySelectorAll('.slider-controls .dot');
+  let itemSliderItems = wrapper.querySelectorAll('.item-slider-item');
+  let itemTotalSliderItems = itemSliderItems.length;
+  itemSliderItems.forEach(item => {
+    item.style.width = 100 / itemTotalSliderItems + '%';
+  });
+  wrapper.style.width = itemTotalSliderItems * 100 +'%';
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', (event) => {
+      handleDotClick(event, dots, wrapper, itemTotalSliderItems);
+    });
+  });
+});
+
+function handleDotClick(event, dots, itemSliderWrapper, itemTotalSliderItems) {
+    let dotIndex = Array.from(dots).indexOf(event.target);
+    dots.forEach(dot => dot.classList.remove('active'));
+    event.target.classList.add('active');
+    let transformValue = -dotIndex * (100 / itemTotalSliderItems);
+    itemSliderWrapper.style.transform = `translateX(${transformValue}%)`;
+}
+
+// Item Slider
+
