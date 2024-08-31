@@ -39,30 +39,6 @@ setInterval(()=>{
   sliderWrapper.style.transform = `translateX(${slide}%)`;
 },3000);
 
-// let itemSliderWrappers = document.querySelectorAll('#item-slider-wrapper');
-// itemSliderWrappers.forEach((wrapper) => {
-//   let sliderContainer = wrapper.parentElement;
-  
-//   let dots = sliderContainer.querySelectorAll('.slider-controls .dot');
-//   let itemSliderItems = wrapper.querySelectorAll('.item-slider-item');
-//   // let itemSliderItem = itemSliderWrapper.querySelectorAll('.item-slider-item');
-//   let itemTotalSliderItems = itemSliderItems.length;
-//   wrapper.style.width = itemTotalSliderItems * 100 +'%';
-// });
-
-// function handleDotClick(event) {
-//   console.log(Array.from(dots).indexOf(event.target));
-  
-//     dots.forEach(dot => dot.classList.remove('active'));
-//     event.target.classList.add('active');
-//     let dotIndex = Array.from(dots).indexOf(event.target);
-//     let transformValue = -dotIndex * (100 / itemTotalSliderItems);
-//     itemSliderWrapper.style.transform = `translateX(${transformValue}%)`;
-// }
-
-// dots.forEach(dot => {
-//     dot.addEventListener('click', handleDotClick);
-// });
 
 
 let itemSliderWrappers = document.querySelectorAll('#item-slider-wrapper');
@@ -92,5 +68,24 @@ function handleDotClick(event, dots, itemSliderWrapper, itemTotalSliderItems) {
     itemSliderWrapper.style.transform = `translateX(${transformValue}%)`;
 }
 
-// Item Slider
+
+function handleIntersection(entries, observer) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = 1;
+      entry.target.style.transform = 'translateY(0)';
+      observer.unobserve(entry.target); 
+    }
+  });
+}
+const observer = new IntersectionObserver(handleIntersection, {
+  root: null, 
+  rootMargin: '0px',
+  threshold: 0.1 
+});
+
+const targetElement = document.querySelectorAll('.animated');
+  targetElement.forEach((element)=>{
+  observer.observe(element);
+});
 
